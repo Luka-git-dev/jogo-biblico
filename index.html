@@ -1,1 +1,21 @@
-gaags
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo Bíblico</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div id="game">
+    <h1>Jogo Bíblico</h1>
+    <div id="question-container">
+      <p id="question"></p>
+      <div id="options"></div>
+    </div>
+    <button id="next-button">Próxima Pergunta</button>
+    <p id="score">Pontuação: 0</p>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
