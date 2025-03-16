@@ -26,8 +26,10 @@ function mostrarPergunta() {
     button.addEventListener("click", () => verificarResposta(opcao));
     optionsElement.appendChild(button);
   });
+  // Atualizar barra de progresso
+  const progress = document.getElementById("progress");
+  progress.style.width = `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
 }
-
 // Função para verificar a resposta
 function verificarResposta(resposta) {
   const pergunta = perguntas[perguntaAtual];
