@@ -13,5 +13,10 @@
     "pergunta": "Quem foi jogado na cova dos leões?",
     "opcoes": ["José", "Daniel", "Jonas", "Paulo", "Pedro"],
     "resposta": "Daniel"
+  },
+  {
+    "pergunta": "Quem traiu Jesus?",
+    "opcoes": ["Paulo", "Jonas", "João Batista", "Judas Tadeu", "Judas Iscariotes"],
+    "resposta": "Judas Iscariotes"
   }
 ]
