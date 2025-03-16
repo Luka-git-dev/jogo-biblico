@@ -7,6 +7,12 @@ const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const nextButton = document.getElementById("next-button");
 const scoreElement = document.getElementById("score");
+const dialog = document.getElementById("dialog");
+const dialogMessage = document.getElementById("dialog-message");
+const dialogButton = document.getElementById("dialog-button");
+const endMessage = document.getElementById("end-message");
+const endText = document.getElementById("end-text");
+const restartButton = document.getElementById("restart-button");
 
 // Função para carregar perguntas do arquivo JSON
 async function carregarPerguntas() {
@@ -30,18 +36,28 @@ function mostrarPergunta() {
   const progress = document.getElementById("progress");
   progress.style.width = `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
 }
+
 // Função para verificar a resposta
 function verificarResposta(resposta) {
   const pergunta = perguntas[perguntaAtual];
   if (resposta === pergunta.resposta) {
     pontuacao++;
-    alert("Correto!");
+    dialogMessage.textContent = "Correto!";
   } else {
-    alert(`Errado! A resposta correta é: ${pergunta.resposta}`);
+    dialogMessage.textContent = `Errado! A resposta correta é: ${pergunta.resposta}`;
   }
-  scoreElement.textContent = `Pontuação: ${pontuacao}`;
-  nextButton.disabled = false;
+  // Mostrar a caixa de diálogo
+  dialog.style.display = "block";
+  // Desabilitar os botões de opção
+  const buttons = optionsElement.querySelectorAll("button");
+  buttons.forEach(button => button.disabled = true);
 }
+
+// Fechar a caixa de diálogo e avançar para a próxima pergunta
+dialogButton.addEventListener("click", () => {
+  dialog.style.display = "none";
+  proximaPergunta();
+});
 
 // Função para passar para a próxima pergunta
 function proximaPergunta() {
@@ -54,20 +70,19 @@ function proximaPergunta() {
     buttons.forEach(button => button.disabled = false);
   } else {
     // Exibir mensagem final
-    const endMessage = document.getElementById("end-message");
-    const endText = document.getElementById("end-text");
     endText.textContent = `Parabéns! Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
     endMessage.style.display = "block";
   }
 }
 
 // Reiniciar o jogo
-const restartButton = document.getElementById("restart-button");
 restartButton.addEventListener("click", () => {
-  const endMessage = document.getElementById("end-message");
   endMessage.style.display = "none";
   perguntaAtual = 0;
   pontuacao = 0;
   mostrarPergunta();
   scoreElement.textContent = `Pontuação: ${pontuacao}`;
 });
+
+// Iniciar o jogo
+carregarPerguntas();
