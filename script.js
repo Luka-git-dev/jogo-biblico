@@ -47,16 +47,25 @@ function proximaPergunta() {
   if (perguntaAtual < perguntas.length) {
     mostrarPergunta();
     nextButton.disabled = true;
+    // Reabilitar os botões de opção
+    const buttons = optionsElement.querySelectorAll("button");
+    buttons.forEach(button => button.disabled = false);
   } else {
-    alert(`Fim do jogo! Sua pontuação final é: ${pontuacao}`);
-    perguntaAtual = 0;
-    pontuacao = 0;
-    mostrarPergunta();
+    // Exibir mensagem final
+    const endMessage = document.getElementById("end-message");
+    const endText = document.getElementById("end-text");
+    endText.textContent = `Parabéns! Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
+    endMessage.style.display = "block";
   }
 }
 
-// Evento para o botão "Próxima Pergunta"
-nextButton.addEventListener("click", proximaPergunta);
-
-// Iniciar o jogo
-carregarPerguntas();
+// Reiniciar o jogo
+const restartButton = document.getElementById("restart-button");
+restartButton.addEventListener("click", () => {
+  const endMessage = document.getElementById("end-message");
+  endMessage.style.display = "none";
+  perguntaAtual = 0;
+  pontuacao = 0;
+  mostrarPergunta();
+  scoreElement.textContent = `Pontuação: ${pontuacao}`;
+});
