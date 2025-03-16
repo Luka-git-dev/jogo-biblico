@@ -1,0 +1,17 @@
+[
+  {
+    "pergunta": "Quem construiu a Arca?",
+    "opcoes": ["Moisés", "Noé", "Abraão", "Davi", "Salomão"],
+    "resposta": "Noé"
+  },
+  {
+    "pergunta": "Qual foi o primeiro milagre de Jesus?",
+    "opcoes": ["Cura do cego", "Multiplicação dos pães", "Transformação de água em vinho", "Ressurreição de Lázaro", "Cura do paralítico"],
+    "resposta": "Transformação de água em vinho"
+  },
+  {
+    "pergunta": "Quem foi jogado na cova dos leões?",
+    "opcoes": ["José", "Daniel", "Jonas", "Paulo", "Pedro"],
+    "resposta": "Daniel"
+  }
+]
