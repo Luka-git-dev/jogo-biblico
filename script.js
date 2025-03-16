@@ -1,3 +1,4 @@
+// Carregar perguntas do arquivo JSON
 let perguntas = [];
 let perguntaAtual = 0;
 let pontuacao = 0;
@@ -7,12 +8,14 @@ const optionsElement = document.getElementById("options");
 const nextButton = document.getElementById("next-button");
 const scoreElement = document.getElementById("score");
 
+// Função para carregar perguntas do arquivo JSON
 async function carregarPerguntas() {
-  const response = await fetch('/perguntas');
+  const response = await fetch('perguntas.json');
   perguntas = await response.json();
   mostrarPergunta();
 }
 
+// Função para exibir a pergunta atual
 function mostrarPergunta() {
   const pergunta = perguntas[perguntaAtual];
   questionElement.textContent = pergunta.pergunta;
@@ -25,29 +28,20 @@ function mostrarPergunta() {
   });
 }
 
-async function verificarResposta(resposta) {
-  const response = await fetch('/verificar_resposta', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      pergunta_id: perguntaAtual,
-      resposta: resposta
-    }),
-  });
-  const resultado = await response.json();
-
-  if (resultado.resultado === "correto") {
+// Função para verificar a resposta
+function verificarResposta(resposta) {
+  const pergunta = perguntas[perguntaAtual];
+  if (resposta === pergunta.resposta) {
     pontuacao++;
     alert("Correto!");
   } else {
-    alert(`Errado! A resposta correta é: ${resultado.resposta_correta}`);
+    alert(`Errado! A resposta correta é: ${pergunta.resposta}`);
   }
   scoreElement.textContent = `Pontuação: ${pontuacao}`;
   nextButton.disabled = false;
 }
 
+// Função para passar para a próxima pergunta
 function proximaPergunta() {
   perguntaAtual++;
   if (perguntaAtual < perguntas.length) {
@@ -61,5 +55,8 @@ function proximaPergunta() {
   }
 }
 
+// Evento para o botão "Próxima Pergunta"
 nextButton.addEventListener("click", proximaPergunta);
+
+// Iniciar o jogo
 carregarPerguntas();
