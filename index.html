@@ -8,9 +8,10 @@
 </head>
 <body>
   <div id="game">
-    <div id="progress-bar">
-  <div id="progress"></div>
     <h1>Jogo Bíblico</h1>
+    <div id="progress-bar">
+      <div id="progress"></div>
+    </div>
     <div id="question-container">
       <p id="question"></p>
       <div id="options"></div>
@@ -18,15 +19,19 @@
     <button id="next-button">Próxima Pergunta</button>
     <p id="score">Pontuação: 0</p>
   </div>
+
+  <!-- Caixa de diálogo -->
+  <div id="dialog" class="dialog">
+    <p id="dialog-message"></p>
+    <button id="dialog-button">OK</button>
+  </div>
+
+  <!-- Mensagem final -->
+  <div id="end-message" class="end-message">
+    <p id="end-text"></p>
+    <button id="restart-button">Reiniciar Jogo</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
-  <div id="dialog" class="dialog">
-  <p id="dialog-message"></p>
-  <button id="dialog-button">OK</button>
-</body>
-    <div id="end-message" class="end-message">
-  <p id="end-text"></p>
-  <button id="restart-button">Reiniciar Jogo</button>
-</div>
-</div>
 </html>
